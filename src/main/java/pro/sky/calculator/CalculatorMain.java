@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CalculatorMain {
+    public Сalculation calculation = new Сalculation();
+
     @GetMapping
     public String manu(){
         return "В адресной строке введите: " +
@@ -18,22 +20,20 @@ public class CalculatorMain {
     }
     @GetMapping(path = "/calculator/plus")
     public String add(@RequestParam("num1") String num1, @RequestParam("num2") String num2) {
-        int numSt1 = Integer.parseInt(num1);
-        int numSt2 = Integer.parseInt(num2);
-        //int sum=num1+num2;
-        return num1 + "+" + num2;
+        return  calculation.add(num1,num2);
     }
     @GetMapping(path = "/calculator/minus")
-    public int subtract(@RequestParam("num1") int num1,@RequestParam("num2") int num2) {
-        return num1 - num2;
+    public String subtract(@RequestParam("num1") String num1,@RequestParam("num2") String num2) {
+        return  calculation.subtract(num1,num2);
     }
     @GetMapping(path = "/calculator/multiply")
-    public int multiply(@RequestParam("num1") int num1,@RequestParam("num2") int num2) {
-        return num1 * num2;
+    public String multiply(@RequestParam("num1") String num1,@RequestParam("num2") String num2) {
+        return  calculation.multiply(num1,num2);
+
     }
     @GetMapping(path = "/calculator/divide")
-    public int divide(@RequestParam("num1") int num1,@RequestParam("num2") int num2) {
-        return num1 / num2 ;
+    public String divide(@RequestParam("num1") String num1,@RequestParam("num2") String num2) {
+        return calculation.divide(num1,num2);
     }
 
 }
